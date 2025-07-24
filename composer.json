@@ -1,13 +1,12 @@
 {
     "name": "reinbier/php-tailwind-colors",
     "description": "For using & generating TailwindCSS colors in Laravel",
+    "license": "MIT",
     "keywords": [
         "reinbier",
         "laravel",
         "php-tailwind-colors"
     ],
-    "homepage": "https://github.com/reinbier/php-tailwind-colors",
-    "license": "MIT",
     "authors": [
         {
             "name": "reinbier",
@@ -15,25 +14,28 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/reinbier/php-tailwind-colors",
     "require": {
         "php": "^8.2",
-        "illuminate/contracts": "^10.0||^11.0||^12.0",
+        "illuminate/contracts": "^10.0 || ^11.0 || ^12.0",
         "spatie/color": "^1.5",
         "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9 || ^3.0",
         "laravel/pint": "^1.14",
-        "nunomaduro/collision": "^8.1.1||^7.10.0",
-        "larastan/larastan": "^2.9||^3.0",
-        "orchestra/testbench": "^9.0.0||^8.22.0||^10.0.0",
-        "pestphp/pest": "^2.34||^3.0",
-        "pestphp/pest-plugin-arch": "^2.7||^3.0",
-        "pestphp/pest-plugin-laravel": "^2.3||^3.0",
+        "nunomaduro/collision": "^7.10.0 || ^8.1.1",
+        "orchestra/testbench": "^8.22.0 || ^9.0.0 || ^10.0.0",
+        "pestphp/pest": "^2.34 || ^3.0",
+        "pestphp/pest-plugin-arch": "^2.7 || ^3.0",
+        "pestphp/pest-plugin-laravel": "^2.3 || ^3.0",
         "phpstan/extension-installer": "^1.3",
-        "phpstan/phpstan-deprecation-rules": "^1.1||^2.0",
-        "phpstan/phpstan-phpunit": "^1.3||^2.0",
+        "phpstan/phpstan-deprecation-rules": "^1.1 || ^2.0",
+        "phpstan/phpstan-phpunit": "^1.3 || ^2.0",
         "spatie/laravel-ray": "^1.35"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Reinbier\\PhpTailwindColors\\": "src/"
@@ -44,30 +46,28 @@
             "Reinbier\\PhpTailwindColors\\Tests\\": "tests/"
         }
     },
-    "scripts": {
-        "post-autoload-dump": "@php vendor/bin/testbench package:discover --ansi",
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
-    },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
-        }
+        },
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "Reinbier\\PhpTailwindColors\\PhpTailwindColorsServiceProvider"
-            ],
             "aliases": {
                 "PhpTailwindColors": "TailwindColor"
-            }
+            },
+            "providers": [
+                "Reinbier\\PhpTailwindColors\\PhpTailwindColorsServiceProvider"
+            ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "scripts": {
+        "post-autoload-dump": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    }
 }
