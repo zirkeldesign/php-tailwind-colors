@@ -24,7 +24,7 @@ class PhpTailwindColorsServiceProvider extends PackageServiceProvider
     {
         $this->app->scoped(
             ColorManager::class,
-            fn () => new ColorManager(),
+            fn () => new ColorManager,
         );
     }
 
