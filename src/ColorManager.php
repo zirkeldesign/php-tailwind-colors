@@ -3,6 +3,7 @@
 namespace Reinbier\PhpTailwindColors;
 
 use Spatie\Color\Hex;
+use Spatie\Color\Rgb;
 
 class ColorManager
 {
@@ -159,13 +160,41 @@ class ColorManager
         static::$defaultColors = ! $state;
     }
 
-    public function renderStyles(): string
+    /**
+     * Render the styles for the colors.
+     */
+    public function renderStyles(?bool $use_tw4_markup = null, ?string $format = null): string
     {
         $variables = [];
 
+        $use_tw4_markup ??= config('php-tailwind-colors.use_tw4_markup', false);
+        $format ??= config('php-tailwind-colors.format');
+
         foreach ($this->getColors() as $name => $shades) {
             foreach ($shades as $shade => $color) {
-                $variables["{$name}-{$shade}"] = $color;
+                $key = "{$name}-{$shade}";
+                if ($use_tw4_markup) {
+                    $key = "color-{$key}";
+                }
+                if ($format) {
+                    $color = Rgb::fromString("rgb($color)");
+                    $color = match ($format) {
+                        'hsl' => $color->toHsl(),
+                        'hsla' => $color->toHsla(),
+                        'rgba' => $color->toRgba(),
+                        'rgb' => $color->toRgb(),
+                        'hex' => $color->toHex(),
+                        default => implode(
+                            ',',
+                            [
+                                $color->red(),
+                                $color->green(),
+                                $color->blue(),
+                            ]
+                        ),
+                    };
+                }
+                $variables[$key] = $color;
             }
         }
 

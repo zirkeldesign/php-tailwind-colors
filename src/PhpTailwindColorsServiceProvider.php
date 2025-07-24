@@ -17,6 +17,7 @@ class PhpTailwindColorsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('php-tailwind-colors')
+            ->hasConfigFile()
             ->hasViews();
     }
 
